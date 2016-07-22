@@ -5,7 +5,7 @@ url = r"https://developers.zomato.com/api/v2.1"
 
 class Zomato:
     """
-    ####
+    Class to call Zomato's Get services
     """
     def __init__(self, key,accept_method='application/json', base_url=url ):
         """
@@ -39,8 +39,8 @@ class Zomato:
 
     def __z_parse(self, data):
         """
-        :param data:
-        :return:
+        :param data:Zomato response object
+        :return:if json response, returns a dictionary
         """
         if self.accept_method == "application/json":
             response = json.loads(data)
