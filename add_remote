@@ -1,0 +1,22 @@
+#!/bin/sh
+
+#git -C $1 rev-parse
+echo
+echo "*  Make sure to run this script from the root
+*  of your Git Project"
+echo 
+# git -C $(pwd) rev-parse
+[ -d .git ] && git rev-parse --git-dir > /dev/null 2>&1
+
+if [ $? -eq 0 ]; then
+	GIT_REPO_NAME=$(basename $(pwd))
+	GIT_USER_NAME="hiteshpaul"
+	echo "Assuming repo_name: $GIT_USER_NAME/$GIT_REPO_NAME"
+	echo
+	LAB_REMOTE="https://gitlab.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git"
+	echo "Appending... $LAB_REMOTE to origin"
+	git remote set-url origin --add https://gitlab.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git
+	echo "done."
+else
+	echo "FAIL"
+fi
